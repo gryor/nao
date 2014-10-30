@@ -76,6 +76,7 @@ void matrix_transpose(size_t rows, size_t columns, double * m, double * mt)
 	}
 }
 
+// size equals to rows and columns ==> square matrix
 void matrix_identity(size_t size, double * mi)
 {
 	size_t i;
@@ -129,6 +130,7 @@ void matrix_sub(size_t size, double * m1, double * m0, double * mout)
 		mout[i] = m1[i] - m0[i];
 }
 
+// size equals to rows and columns ==> square matrix
 static void matrix_capture(size_t size, size_t skip_row, size_t skip_column, double * m, double * mout)
 {
 	size_t i, j, k = 0;
@@ -154,6 +156,7 @@ static void matrix_checkerboard(size_t size, double * m, double * mout)
 		mout[i] = -1 * m[i];
 }
 
+// size equals to rows and columns ==> square matrix
 double matrix_determinant(size_t size, double * m)
 {
 	double det = 0;
@@ -176,6 +179,7 @@ double matrix_determinant(size_t size, double * m)
 	return det;
 }
 
+// size equals to rows and columns ==> square matrix
 void matrix_cofactors(size_t size, double * m, double * mout)
 {
 	double mc[size - 1];
@@ -191,6 +195,7 @@ void matrix_cofactors(size_t size, double * m, double * mout)
 	matrix_checkerboard(size * size, mout, mout);
 }
 
+// size equals to rows and columns ==> square matrix
 void matrix_adjucate(size_t size, double * m, double * mout)
 {
 	double mtmp[size * size];
@@ -198,6 +203,7 @@ void matrix_adjucate(size_t size, double * m, double * mout)
 	matrix_transpose(size, size, mtmp, mout);
 }
 
+// size equals to rows and columns ==> square matrix
 int matrix_inverse(size_t size, double * m, double * mout)
 {
 	double det = matrix_determinant(size, m);
@@ -210,6 +216,7 @@ int matrix_inverse(size_t size, double * m, double * mout)
 	return 0;
 }
 
+// size equals to rows and columns of A ==> square matrix
 int matrix_solve(size_t size, double * A, double * B, double * X)
 {
 	double Ai[size * size];
