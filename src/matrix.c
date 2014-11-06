@@ -225,4 +225,5 @@ int matrix_solve(size_t size, double * A, double * B, double * X)
 		return 1;
 
 	matrix_multiply(size, size, 1, Ai, B, X);
+	return 0;
 }
