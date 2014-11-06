@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+#include <stddef.h>
+
 
 double factorial(size_t number);
 
