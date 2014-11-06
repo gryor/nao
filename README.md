@@ -13,6 +13,33 @@ Features
 * Polynomials
   - Solvers for 1-4 degree polynomials
 
+Install
+===
+```sh
+# Build what you need
+# Release lib
+make lib
+# Debug lib
+make libdebug
+
+# Install the libraries
+sudo make installlib
+
+# Release is a testing unit
+#make release
+# This will install binaries not libraries
+#sudo make install
+
+# Use alternative destination
+# E.g. for packages or for one user
+#destdir=/home/user/something make installlib
+
+# Use alternative prefix
+# E.g. for installing somewhere else than /usr
+#prefix=/usr/local sudo make installlib
+
+```
+
 Example - main.c
 ===
 ``` c
@@ -49,8 +76,8 @@ int main(int argc, char * argv[])
 ```
 Output
 ```
-A		1.00	1.00	1.00	0.00	2.00	5.00	2.00	5.00	-1.00	
-B		6.00	-4.00	27.00	
-X		5.00	3.00	-2.00	
+A		1.00	1.00	1.00	0.00	2.00	5.00	2.00	5.00	-1.00
+B		6.00	-4.00	27.00
+X		5.00	3.00	-2.00
 x		-6.00	-4.00	3.00	5.00
 ```
