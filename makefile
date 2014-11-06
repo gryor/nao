@@ -33,10 +33,10 @@ else
 endif
 	@echo -en "\e[1;32mSuccess\e[0m\n"
 %.c.o: %.c
-	@astyle $<
+	#@astyle $<
 	@${cc} ${cflags} ${cflags_debug} -c $< -o .luo/$@
 %.cpp.o: %.cpp
-	@astyle $<
+	#@astyle $<
 	@${ccc} ${ccflags} ${ccflags_debug} -c $< -o .luo/$@
 %.c.release.o: %.c
 	@${cc} ${cflags} ${cflags_release} -c $< -o .luo/$@
