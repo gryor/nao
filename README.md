@@ -1,8 +1,15 @@
-nao
+Nao
 ===
 
 Nao is a math library.
 
+Features
+===
+* Matrices
+  - Matrix solver
+* Vectors
+* Polynomials
+  - Solvers for 1-4 degree polynomials
 
 Example - main.c
 ===
