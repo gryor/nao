@@ -22,9 +22,6 @@ make lib
 # Debug lib
 make libdebug
 
-# Release is a testing unit
-#make release
-
 # Install
 sudo make install
 
