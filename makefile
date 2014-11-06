@@ -21,7 +21,7 @@ version_major = ${shell echo ${version} | cut -d . -f1}
 destdir ?=
 prefix ?= /usr
 
-.phony: all clean release debug luo lib install installlib
+.phony: all clean release debug luo lib install
 
 all: release lib
 
@@ -86,8 +86,6 @@ clean:
 	-@rm -rf build .luo
 
 install:
-	-@install -D -t ${destdir}${prefix}/bin build/bin/*
-
-installlib:
-	-@install -D -t ${destdir}${prefix}/lib build/lib/*
-	-@install -D -t ${destdir}${prefix}/include/${target} build/include/*
+	-@install -D -t ${destdir}${prefix}/bin build/bin/* 2&>/dev/null || exit 0
+	-@install -D -t ${destdir}${prefix}/lib build/lib/* 2&>/dev/null || exit 0
+	-@install -D -t ${destdir}${prefix}/include/${target} build/include/* || exit 0

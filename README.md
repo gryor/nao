@@ -22,21 +22,19 @@ make lib
 # Debug lib
 make libdebug
 
-# Install the libraries
-sudo make installlib
-
 # Release is a testing unit
 #make release
-# This will install binaries not libraries
-#sudo make install
+
+# Install
+sudo make install
 
 # Use alternative destination
 # E.g. for packages or for one user
-#make installlib destdir=/home/user/something
+#make install destdir=/home/user/something
 
 # Use alternative prefix
 # E.g. for installing somewhere else than /usr
-#sudo make installlib prefix=/usr/local
+#sudo make install prefix=/usr/local
 
 ```
 
