@@ -32,11 +32,11 @@ sudo make installlib
 
 # Use alternative destination
 # E.g. for packages or for one user
-#destdir=/home/user/something make installlib
+#make installlib destdir=/home/user/something
 
 # Use alternative prefix
 # E.g. for installing somewhere else than /usr
-#prefix=/usr/local sudo make installlib
+#sudo make installlib prefix=/usr/local
 
 ```
 
