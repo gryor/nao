@@ -13,31 +13,40 @@ ccflags_release = -O3
 
 csources = ${wildcard src/*.c}
 ccsources = ${wildcard src/*.cpp}
-libraries = ${addprefix -l, ${shell cat libraries | tr "\n" " " | sed "s/\s$$//"}}
+libraries = ${addprefix -l, ${shell test -f libraries || touch libraries &&  cat libraries | tr "\n" " " | sed "s/\s$$//"}}
 target = $(notdir ${shell pwd})
+version = ${shell test -f VERSION || echo 1.0.0 > VERSION && cat VERSION | tr "\n" " " | sed "s/\s$$//"}
+version_major = ${shell echo ${version} | cut -d . -f1}
 
-.phony: all clean release luo
+.phony: all clean release debug luo lib
 
 all: release lib
+
 release: luo ${csources:.c=.c.release.o} ${ccsources:.cpp=.cpp.release.o}
 ifeq ($(strip $(ccsources)),)
-	@${cc} ${addprefix .luo/, ${csources:.c=.c.release.o}} ${libraries} -o build/${target}
+	@${cc} ${addprefix .luo/, ${csources:.c=.c.release.o}} ${libraries} -o build/bin/${target}
 else
-	@${ccc} ${addprefix .luo/, ${csources:.c=.c.release.o}} ${addprefix .luo/, ${ccsources:.cpp=.cpp.release.o}} ${libraries} -o build/${target}
+	@${ccc} ${addprefix .luo/, ${csources:.c=.c.release.o}} ${addprefix .luo/, ${ccsources:.cpp=.cpp.release.o}} ${libraries} -o build/bin/${target}
 endif
+	@ln -sf bin/${target} build/
+
 lib: luo ${csources:.c=.c.lib.o} ${ccsources:.cpp=.cpp.lib.o}
 ifeq ($(strip $(ccsources)),)
-	@${cc} -shared ${addprefix .luo/, ${csources:.c=.c.lib.o}} ${libraries} -o build/lib${target}.so
+	@${cc} -shared -Wl,-soname,lib${target}.so.${version_major} ${addprefix .luo/, ${csources:.c=.c.lib.o}} ${libraries} -o build/lib/lib${target}.so.${version}
 else
-	@${ccc} -shared ${addprefix .luo/, ${csources:.c=.c.lib.o}} ${addprefix .luo/, ${ccsources:.cpp=.cpp.lib.o}} ${libraries} -o build/lib${target}.so
+	@${ccc} -shared -Wl,-soname,lib${target}.so.${version_major} ${addprefix .luo/, ${csources:.c=.c.lib.o}} ${addprefix .luo/, ${ccsources:.cpp=.cpp.lib.o}} ${libraries} -o build/lib/lib${target}.so.${version}
 endif
+	@find src -name "*.h" -exec cp -t build/include {} \;
+
 debug: luo ${csources:.c=.c.o} ${ccsources:.cpp=.cpp.o}
 ifeq ($(strip $(ccsources)),)
-	@${cc} ${addprefix .luo/, ${csources:.c=.c.o}} ${libraries} -o build/${target}
+	@${cc} ${addprefix .luo/, ${csources:.c=.c.o}} ${libraries} -o build/bin/${target}
 else
-	@${ccc} ${addprefix .luo/, ${csources:.c=.c.o}} ${addprefix .luo/, ${ccsources:.cpp=.cpp.o}} ${libraries} -o build/${target}
+	@${ccc} ${addprefix .luo/, ${csources:.c=.c.o}} ${addprefix .luo/, ${ccsources:.cpp=.cpp.o}} ${libraries} -o build/bin/${target}
 endif
+	@ln -sf bin/${target} build/
 	@echo -en "\e[1;32mSuccess\e[0m\n"
+
 %.c.o: %.c
 	@${cc} ${cflags} ${cflags_debug} -c $< -o .luo/$@
 %.cpp.o: %.cpp
@@ -53,5 +62,8 @@ endif
 luo:
 	@mkdir -p .luo/${dir ${csources}}
 	@mkdir -p build
+	@mkdir -p build/lib
+	@mkdir -p build/include
+	@mkdir -p build/bin
 clean:
 	-@rm -rf build .luo
