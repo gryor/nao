@@ -1,16 +1,6 @@
 #include "matrix.h"
 #include <math.h>
 
-double factorial(size_t number)
-{
-	size_t result = 1;
-
-	for(; number > 1; number--)
-		result *= number;
-
-	return result;
-}
-
 double vector_length(size_t size, double * v)
 {
 	double length = 0;

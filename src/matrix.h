@@ -7,8 +7,6 @@ extern "C" {
 
 #include <stddef.h>
 
-double factorial(size_t number);
-
 
 double vector_length(size_t size, double * v);
 void vector_unit(size_t size, double * v, double * vout);
