@@ -5,6 +5,8 @@ Nao is a math library.
 
 Features
 ===
+* Scalar
+  - Factorial
 * Matrices
   - Matrix solver
 * Vectors
