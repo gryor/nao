@@ -13,7 +13,7 @@ ccflags_release = -O3
 
 csources = ${wildcard src/*.c}
 ccsources = ${wildcard src/*.cpp}
-libraries = ${addprefix -l, ${shell test -f libraries || touch libraries &&  cat libraries | tr "\n" " " | sed "s/\s$$//"}}
+libraries = ${addprefix -l, ${shell test -f libraries || touch libraries && cat libraries | tr "\n" " " | sed "s/\s$$//"}}
 target = $(notdir ${shell pwd})
 version = ${shell test -f VERSION || echo 1.0.0 > VERSION && cat VERSION | tr "\n" " " | sed "s/\s$$//"}
 version_major = ${shell echo ${version} | cut -d . -f1}
