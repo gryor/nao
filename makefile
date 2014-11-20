@@ -21,7 +21,7 @@ version_major = ${shell echo ${version} | cut -d . -f1}
 destdir ?=
 prefix ?= /usr
 
-.phony: all clean release debug luo lib install
+.phony: all clean release debug luo lib libd install
 
 all: release lib
 
@@ -39,14 +39,17 @@ ifeq ($(strip $(ccsources)),)
 else
 	@${ccc} -shared -Wl,-soname,lib${target}.so.${version_major} ${addprefix .luo/, ${csources:.c=.c.lib.o}} ${addprefix .luo/, ${ccsources:.cpp=.cpp.lib.o}} ${libraries} -o build/lib/lib${target}.so.${version}
 endif
-	@find src -name "*.h" -exec cp -f -t build/include {} \;
+	@ln -s lib${target}.so.${version} build/lib/lib${target}.so
+	@ln -s lib${target}.so.${version} build/lib/lib${target}.so.${version_major}
 
-libdebug: luo include ${csources:.c=.c.lib.debug.o} ${ccsources:.cpp=.cpp.lib.debug.o}
+libd: luo include ${csources:.c=.c.lib.debug.o} ${ccsources:.cpp=.cpp.lib.debug.o}
 ifeq ($(strip $(ccsources)),)
 	@${cc} -shared -Wl,-soname,lib${target}.so.${version_major} ${addprefix .luo/, ${csources:.c=.c.lib.debug.o}} ${libraries} -o build/lib/lib${target}d.so.${version}
 else
 	@${ccc} -shared -Wl,-soname,lib${target}.so.${version_major} ${addprefix .luo/, ${csources:.c=.c.lib.debug.o}} ${addprefix .luo/, ${ccsources:.cpp=.cpp.lib.debug.o}} ${libraries} -o build/lib/lib${target}d.so.${version}
 endif
+	@ln -s lib${target}d.so.${version} build/lib/lib${target}d.so
+	@ln -s lib${target}d.so.${version} build/lib/lib${target}d.so.${version_major}
 
 include:
 	@find src -name "*.h" -exec cp -f -t build/include {} \;
@@ -87,5 +90,7 @@ clean:
 
 install:
 	-@install -D -t ${destdir}${prefix}/bin build/bin/* 2&>/dev/null || exit 0
-	-@install -D -t ${destdir}${prefix}/lib build/lib/* 2&>/dev/null || exit 0
+	-@install -D -t ${destdir}${prefix}/lib build/lib/lib${target}.so.${version} 2&>/dev/null || exit 0
+	-@install -D -t ${destdir}${prefix}/lib build/lib/lib${target}d.so.${version} 2&>/dev/null || exit 0
+	-@find build/lib -type l -exec cp -fP -t ${destdir}${prefix}/lib {} \;
 	-@install -D -t ${destdir}${prefix}/include/${target} build/include/* || exit 0
