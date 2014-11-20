@@ -150,7 +150,7 @@ static void matrix_checkerboard(size_t size, double * m, double * mout)
 double matrix_determinant(size_t size, double * m)
 {
 	double det = 0;
-	double mc[size - 1];
+	double mc[(size - 1) * (size - 1)];
 	size_t i;
 
 	if(size == 2)
