@@ -172,7 +172,7 @@ double matrix_determinant(size_t size, double * m)
 // size equals to rows and columns ==> square matrix
 void matrix_cofactors(size_t size, double * m, double * mout)
 {
-	double mc[size - 1];
+	double mc[(size-1) * (size - 1)];
 	size_t i, j;
 
 	for(i = 0; i < size; i++) {
@@ -216,4 +216,27 @@ int matrix_solve(size_t size, double * A, double * B, double * X)
 
 	matrix_multiply(size, size, 1, Ai, B, X);
 	return 0;
+}
+
+void vector3_cross(double * v0, double * v1, double * vout)
+{
+	double m[3 * 3];
+	double mc[2 * 2];
+	size_t i;
+
+	for(i = 0; i < 3; i++)
+		m[i] = 1;
+
+	for(i = 0; i < 3; i++)
+		m[i + 3] = v0[i];
+
+	for(i = 0; i < 3; i++)
+		m[i + 2 * 3] = v1[i];
+
+	for(i = 0; i < 3; i++) {
+		matrix_capture(3, 0, i, m, mc);
+		vout[i] = matrix_determinant(2, mc);
+	}
+
+	matrix_checkerboard(3, vout, vout);
 }

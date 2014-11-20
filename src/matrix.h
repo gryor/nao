@@ -13,6 +13,7 @@ void vector_unit(size_t size, double * v, double * vout);
 void vector_multiply(size_t size, double scalar, double * v, double * vout);
 void vector_interpolate(size_t size, double * v0, double * v1, double t, double * vout);
 double vector_dot(size_t size, double * v0, double * v1);
+void vector3_cross(double * v0, double * v1, double * vout);
 
 
 void matrix_zero(size_t size, double * m);
