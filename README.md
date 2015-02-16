@@ -12,6 +12,9 @@ Features
 * Vectors
 * Polynomials
   - Solvers for 1-4 degree polynomials
+* Distance
+  - Distance of a line to a point
+  - Test whether a point is outside a sphere
 
 Install
 ===
