@@ -1,3 +1,5 @@
+[![Documentation Status](https://readthedocs.org/projects/nao/badge/?version=latest)](https://readthedocs.org/projects/nao/?badge=latest)
+
 Nao
 ===
 [Read the docs!](https://nao.readthedocs.org)
