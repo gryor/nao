@@ -1,3 +1,6 @@
+# Distance
+These functions are used to either calculate the distance of different geometrical entities or to test whether two enties touch/cross each other.
+
 ## Distance from a line to a point 
 
 ```c
