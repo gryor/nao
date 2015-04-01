@@ -1,5 +1,6 @@
 Nao
 ===
+[Read the docs!](https://nao.readthedocs.org)
 
 Nao is a math library.
 
