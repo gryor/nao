@@ -5,6 +5,6 @@ site_description: Nao is a math library.
 pages:
 - ['index.md', 'Home']
 - ['matrix.md', 'API Reference', 'Matrix']
-- ['polynomial.md, 'API Reference'', 'Polynomial']
-- ['scalar.md, 'API Reference'', 'Scalar']
-- ['distance.md, 'API Reference'', 'Distance']
+- ['polynomial.md', 'API Reference', 'Polynomial']
+- ['scalar.md', 'API Reference', 'Scalar']
+- ['distance.md', 'API Reference', 'Distance']
