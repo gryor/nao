@@ -1,0 +1,10 @@
+site_name: Nao
+repo_url: https://github.com/wilhelmmatilainen/nao
+site_description: Nao is a math library.
+
+pages:
+- ['index.md', 'Home']
+- ['matrix.md', 'Matrix']
+- ['polynomial.md', 'Polynomial']
+- ['scalar.md', 'Scalar']
+- ['distance.md', 'Distance']
