@@ -46,7 +46,7 @@
 		]
 	},
 	"build": {
-		"name": "nao"
+		"name": "nao",
 		"+": {
 			"all": {
 				"depends": [
