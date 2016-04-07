@@ -1,6 +1,6 @@
 {
   "name": "native-nao",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Nao is a math library written in C",
   "main": "make.js",
   "directories": {
