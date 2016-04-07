@@ -1,4 +1,4 @@
-{
+j
 	"name": "native-nao",
 	"version": "0.0.1",
 	"description": "Nao is a math library written in C",
@@ -46,6 +46,7 @@
 		]
 	},
 	"build": {
+		"name": "nao",
 		"+": {
 			"all": {
 				"depends": [
