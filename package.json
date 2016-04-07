@@ -91,7 +91,7 @@
             "m"
           ],
           "static": [
-            "native-nao.debug"
+            "nao.debug"
           ]
         },
         "search": {
@@ -129,7 +129,7 @@
             },
             "+": {
               "debug-static": {
-                "name": "native-nao.debug",
+                "name": "nao.debug",
                 "options": {
                   "all": [
                     "O0",
@@ -160,7 +160,7 @@
             },
             "+": {
               "debug-shared": {
-                "name": "native-nao.debug",
+                "name": "nao.debug",
                 "options": {
                   "all": [
                     "O0",
@@ -172,7 +172,7 @@
                 ],
                 "libraries": {
                   "static": [
-                    "native-nao.debug"
+                    "nao.debug"
                   ]
                 }
               },
