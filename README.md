@@ -19,26 +19,11 @@ Features
   - Distance of a line to a point
   - Test whether a point is outside a sphere
 
-Install
+Build
 ===
 ```sh
-# Build what you need
-# Release lib
-make lib
-# Debug lib
-make libdebug
-
-# Install
-sudo make install
-
-# Use alternative destination
-# E.g. for packages or for one user
-#make install destdir=/home/user/something
-
-# Use alternative prefix
-# E.g. for installing somewhere else than /usr
-#sudo make install prefix=/usr/local
-
+make
+# libraries will be in build/lib
 ```
 
 Example - main.c
